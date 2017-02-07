@@ -1,7 +1,7 @@
 <?php
 /**
  * Приложение третьего типа для Битрикс24 и WebHooks - упрощенный вариант rest-событий и rest-команд, без написания приложения.
- * Для выбора закомментировать лишнее (конфиг и require 'include/app.php'; или require 'include/hook.php'; соответственно)
+ * Для выбора закомментировать лишнее (конфиг и require 'include/app.php' или require 'include/hook.php' соответственно)
  * Скрипт лежит на своем хостинге, по cron подключается к Битрикс24, проверяет не собирается ли кто-то из пользователей в отпуск через 3, 2 и 1 неделю, отправляет в Б24 уведомление об этом событии руководителю отправляющегося в отпуск сотрудника. Опционально можно оповещать сразу из скрипта по e-mail.
  *
  * @author Mad Max <programmint48@yandex.ru>
@@ -13,14 +13,12 @@ session_start();
 /**
  * Подключаем файл конфигурации
  */
-$config = require 'include/config.php';
-
+$config = file_exists('include/config-dev.php') ? require_once 'include/config-dev.php' : require_once 'include/config.php';
 
 /**
  * Подключаем файл с функциями обращения по API
  */
 require_once 'include/rest.php';
-
 
 
 //$_SESSION['config']  = $config['app'];
@@ -131,5 +129,3 @@ foreach ($mans as $employee) {
 
 }
 
-
-echo "";
