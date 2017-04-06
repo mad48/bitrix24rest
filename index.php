@@ -76,7 +76,6 @@ foreach ($mans as $employee) {
         foreach ($row as $event) {
 
             if ($event['ACCESSIBILITY'] == "absent") { // отсутствовал - в отпуске
-                //echo "Сегодня: " . (new DateTime())->format('d.m.Y') . "<br><br>";
 
                 $holiday_begin = date('d.m.Y', strtotime($event['DATE_FROM']));  // дата начала отпуска
                 $holiday_end = date('d.m.Y', strtotime($event['DATE_TO']));  // дата окончания  отпуска
@@ -91,7 +90,6 @@ foreach ($mans as $employee) {
                     $holiday_end .
                     " по причине: " .
                     $event['NAME'];
-
 
                 // цикл по неделям
                 for ($i = 1; $i <= 3; $i++) {
@@ -120,7 +118,7 @@ foreach ($mans as $employee) {
 
                         echo "<b>Уведомление в  Битрикс24 </b><i> для user_id=" . $notify_userid . ": " . $message . "</i><br>";
                         // отправка оповещения в Битрикс24
-                        // notify($notify_userid, $message);
+                        notify($notify_userid, $message);
                     }
                 }
             }
